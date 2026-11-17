@@ -1,0 +1,23 @@
+{
+  "kind": "sampled visualization, not full-resolution survey",
+  "buffers": {
+    "map-data": {
+      "url": "data/points.f32.gz",
+      "bytes": 35200000,
+      "compressedBytes": 29861553,
+      "sha256": "bc9e049978fc2c7003695461e18bb089f0cd0e68012046c3b2823b6057a1c8cd"
+    },
+    "class-data": {
+      "url": "data/classes.u8.gz",
+      "bytes": 2200000,
+      "compressedBytes": 95834,
+      "sha256": "0aaebd5ae271859ff42d5f55a6e6915f4906555895f7ea34d27ed2c6fe9044b9"
+    },
+    "trajectory-data": {
+      "url": "data/path.f32.gz",
+      "bytes": 345192,
+      "compressedBytes": 302272,
+      "sha256": "e48fb1db057e4264f18bd623923b3e5c8fb469fa435b917b36b4547e23c8ef29"
+    }
+  }
+}

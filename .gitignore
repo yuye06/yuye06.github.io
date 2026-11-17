@@ -1,0 +1,14 @@
+.deploy-state.json
+.env
+.env.*
+__pycache__/
+*.pyc
+*.tmp
+.DS_Store
+node_modules/
+private/
+*.bag
+*.laz
+*.las
+*.npz
+*.npy

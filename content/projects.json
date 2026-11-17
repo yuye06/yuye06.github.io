@@ -1,0 +1,82 @@
+[
+  {
+    "slug": "clark-kerr", "title": "Clark Kerr: a campus in 3D", "short": "Clark Kerr LiDAR & heat", "categories": ["sensing", "heat"], "theme": "3D sensing / microclimate", "status": "Diagnostic pilot", "accent": "blue", "featured": true,
+    "summary": "Combining airborne and portable LiDAR to understand campus geometry and prepare for pedestrian radiant-heat modeling.",
+    "question": "What does a portable survey add to an airborne representation of a campus, and where is that geometry reliable enough to inform heat-exposure analysis?",
+    "approach": ["Audit USGS airborne tiles and reconstruct a portable LiDAR recording.", "Bring the point clouds into a shared horizontal and vertical reference.", "Inspect agreement on spatially held-out surfaces and keep uncertainty explicit.", "Build toward comparable geometry inputs for SOLWEIG radiant-heat scenarios."],
+    "checkpoint": "The current explorer includes four primary airborne tiles, two optional overlapping versions, and the diagnostic registered portable cloud. All six unique airborne files were fully decoded. The primary tile footprints span the provisional campus and its 100 m buffer; observed surface coverage can still vary.",
+    "limitations": "The portable transform comes from the original northern pilot. Median absolute held-out disagreement there was 0.173 m, with a 1.444 m 95th percentile. Those checks do not establish survey accuracy or validate the newly added area. Analytical fusion and heatwave modeling remain pending.",
+    "next": ["Inspect local discrepancies and qualify any portable contributions before analytical fusion.", "Review the campus boundary and compare building and canopy products.", "Prepare a consistent geometry stack and documented event-specific meteorology."],
+    "diagram": ["Airborne + portable observations", "Reference & agreement checks", "Qualified geometry → heat modeling"], "related": ["sky-view-factor", "solweig-urban-heat"], "source_public": false
+  },
+  {
+    "slug": "would-you-walk-here", "title": "Would you walk here?", "short": "Street perception & vision-language models", "categories": ["human", "sensing"], "theme": "Human experience / machine perception", "status": "Evaluation study", "accent": "coral",
+    "summary": "Examining how open vision-language models judge street scenes, how stable those judgments are, and whose perceptions they resemble.",
+    "question": "When models judge a street as safer or more beautiful, which human judgments do they reproduce—and how consistent are their answers?",
+    "approach": ["Compare paired model judgments with Place Pulse crowd assessments.", "Test sensitivity to image order, mirroring, wording, and response format.", "Use SPECS to examine perception differences across groups and countries.", "Explore whether persona prompts shift a model toward a group's judgments."],
+    "checkpoint": "The project notes document two studies, model-run outputs, analysis scripts, and figures. The public note describes the evaluation design; it does not claim that model judgments are a universal measure of street quality.",
+    "limitations": "Human perception differs across people and contexts. Robustness and group agreement are separate evaluation questions, and persona prompts require careful interpretation.",
+    "next": ["Review consistency and group-agreement results together.", "Document the assumptions behind any interpretation of model-human agreement."],
+    "diagram": ["Street scenes + human judgments", "Model judgments & perturbations", "Consistency + group agreement"], "related": ["portland-street-view", "urban-emotional-resilience"], "source_public": false
+  },
+  {
+    "slug": "urban-heat-experts", "title": "Learning the daily rhythm of urban heat", "short": "Urban heat & foundation-model experts", "categories": ["heat"], "theme": "Urban climate / predictive modeling", "status": "Model prototype", "accent": "ochre",
+    "summary": "Exploring a mixture-of-experts framework that brings Earth-observation, LiDAR-derived urban form, and regional weather context into hourly air-temperature mapping.",
+    "question": "Can complementary representations of urban surfaces and atmospheric conditions improve fine-scale heat mapping across the day and across cities?",
+    "approach": ["Align Earth-observation representations and LiDAR-derived urban-form features.", "Condition a mixture-of-experts router on regional weather, location, and time.", "Develop parameter-efficient adaptation and a weather-conditioned decoder.", "Plan station-based and cross-city checks alongside interpretation of expert routing."],
+    "checkpoint": "Available repository notes document an implemented architecture, data preparation, and early end-to-end training. The recorded prototype includes stand-in components, so this note does not present the training snapshots as validated cross-city performance.",
+    "limitations": "Air-temperature prediction is distinct from radiant exposure. Generalization, uncertainty, and the contribution of each model stream still need explicit evaluation.",
+    "next": ["Complete and verify the weather-context components.", "Evaluate held-out observations and transfer across study regions.", "Examine whether routing patterns are interpretable across the diurnal cycle."],
+    "diagram": ["Surface representations + urban form", "Weather-conditioned expert routing", "Hourly temperature estimates"], "related": ["solweig-urban-heat", "clark-kerr"], "source_public": false
+  },
+  {
+    "slug": "portland-street-view", "title": "Reading Portland from the street", "short": "Portland Street View pipeline", "categories": ["sensing"], "theme": "Street imagery / urban observation", "status": "Working pipeline", "accent": "green",
+    "summary": "A road-based imagery and segmentation workflow for tracking the sky, vegetation, and built environment visible from Portland streets.",
+    "question": "How can repeatable street-level sampling support comparisons of sky openness and visible greenery across capture years?",
+    "approach": ["Use OpenStreetMap roads and sampling points to organize coverage.", "Select panoramas by capture year and spatial sampling units.", "Segment imagery into classes such as sky, vegetation, and buildings.", "Summarize pixel ratios for sky-view and greenery analysis."],
+    "checkpoint": "The project notes document processed 2023–2025 imagery. Acquisition endpoints and known sampling gaps need review before the time series is extended. No Street View imagery is distributed through this site.",
+    "limitations": "Visible pixel ratios depend on sampling, camera context, segmentation, and capture dates. Source access conditions must be respected when rebuilding imagery collections.",
+    "next": ["Update the acquisition route and assess geographic sampling gaps.", "Check comparability across capture years and segmentation outputs."],
+    "diagram": ["Road network + spatial sampling", "Panorama selection & segmentation", "Sky / vegetation / building ratios"], "related": ["sky-view-factor", "would-you-walk-here"], "source_public": false
+  },
+  {
+    "slug": "sky-view-factor", "title": "How open is the urban sky?", "short": "LiDAR vs. street-view sky view factor", "categories": ["sensing", "heat"], "theme": "Urban form / measurement comparison", "status": "Research direction", "accent": "blue",
+    "summary": "A research direction comparing LiDAR- and street-view-derived sky view factor for urban microclimate and resilience studies.",
+    "question": "Where do 3D geometry and street-level imagery agree about sky openness, and what explains their differences?",
+    "approach": ["Develop comparable measures of sky openness from LiDAR and street-level imagery.", "Organize geometry and image-derived estimates on a shared spatial basis.", "Investigate how observation context affects the comparison."],
+    "checkpoint": "The available repository description establishes the comparison objective. This public note presents the research direction rather than a completed empirical comparison.",
+    "limitations": "Different observation positions, acquisition dates, and definitions of visibility can affect apparent agreement.",
+    "next": ["Specify the paired observation and evaluation design.", "Document uncertainty in each measurement route before interpreting differences."],
+    "diagram": ["LiDAR geometry / street imagery", "Comparable sky-openness estimates", "Spatial agreement assessment"], "related": ["clark-kerr", "portland-street-view"], "source_public": false
+  },
+  {
+    "slug": "shaded-routing", "title": "Routes that account for heat and shade", "short": "Multimodal shaded routing", "categories": ["heat", "human"], "theme": "Mobility / environmental exposure", "status": "Research concept", "accent": "green",
+    "summary": "A proposed multimodal, preference-conditioned reinforcement-learning framework for personalized shaded route planning, with a focus on children.",
+    "question": "How could route choice account for heat, shade, and differing preferences instead of optimizing distance alone?",
+    "approach": ["Formulate route planning around environmental context and user preferences.", "Explore a multimodal, preference-conditioned learning framework.", "Plan evaluations of shade and heat-related route trade-offs."],
+    "checkpoint": "The repository currently describes the framework concept. This is a research proposal, not a deployed navigation service or a validated heat-safety recommendation.",
+    "limitations": "Environmental estimates, accessibility constraints, and the needs of intended users require careful validation before practical route recommendations.",
+    "next": ["Define the data, objectives, constraints, and evaluation protocol.", "Assess preference and exposure trade-offs before testing a routing system."],
+    "diagram": ["Environment + route preferences", "Preference-conditioned planning", "Shade / exposure trade-offs"], "related": ["solweig-urban-heat", "would-you-walk-here"], "source_public": false
+  },
+  {
+    "slug": "urban-emotional-resilience", "title": "Green infrastructure and emotional resilience", "short": "Causal evidence & urban resilience", "categories": ["human"], "theme": "Causal inference / urban resilience", "status": "Replication code", "accent": "coral",
+    "summary": "A replication project examining green infrastructure and urban emotional resilience through double machine learning and interpretable modeling.",
+    "question": "How can observational urban data support a more careful assessment of green infrastructure and emotional resilience during disruption?",
+    "approach": ["Construct resilience measures for Shanghai neighborhoods during the 2022 lockdown.", "Use double machine learning for the causal-estimation workflow.", "Explore interpretation with MLP-SHAP and resilience metrics."],
+    "checkpoint": "The public repository describes replication code for the study 'Building urban emotional resilience through green infrastructure: causal evidence from double machine learning.' This site summarizes the research scope rather than reproducing the study's findings.",
+    "limitations": "Causal interpretation depends on the identification assumptions and measurement choices of the study design.",
+    "next": ["Keep replication steps and assumptions transparent.", "Assess robustness and interpretation within the study's scope."],
+    "diagram": ["Urban context + resilience measures", "Double machine learning", "Robustness & interpretation"], "related": ["would-you-walk-here", "urban-heat-experts"], "source_public": true, "source_url": "https://github.com/yuye06/dml-urban-resilience"
+  },
+  {
+    "slug": "solweig-urban-heat", "title": "From urban geometry to radiant exposure", "short": "SOLWEIG urban heat workflow", "categories": ["heat"], "theme": "Microclimate / physical modeling", "status": "Workflow concept", "accent": "ochre",
+    "summary": "A reproducible workflow direction for pedestrian-level radiant-heat modeling with SOLWEIG, GIS, urban morphology, and meteorological data.",
+    "question": "How can consistent geometry and weather inputs support interpretable comparisons of pedestrian radiant exposure?",
+    "approach": ["Prepare compatible terrain, building, vegetation, and sky-view inputs.", "Organize meteorological forcing and model parameters reproducibly.", "Plan comparable scenarios for shade and mean radiant temperature."],
+    "checkpoint": "The available repository description defines the workflow objective. The Clark Kerr pilot provides related geometry work, but no campus heatwave simulation is claimed at this checkpoint.",
+    "limitations": "Modeled radiant temperature, observed air temperature, and thermal-comfort indices are distinct quantities. Their inputs and validation needs differ.",
+    "next": ["Verify geometry, vegetation, and meteorological conventions.", "Run a small modeling pilot before interpreting event-scale scenario differences."],
+    "diagram": ["Consistent geometry + meteorology", "SOLWEIG scenario workflow", "Shade + mean radiant temperature"], "related": ["clark-kerr", "shaded-routing"], "source_public": false
+  }
+]
