@@ -1,5 +1,15 @@
 [
   {
+    "slug": "schooly", "title": "Schooly: from campus evidence to community action", "short": "Schooly schoolyard shade", "categories": ["heat", "human"], "theme": "Schoolyard heat / community decision support", "status": "Demo prototype", "accent": "green", "demo_url": "explore/schooly/",
+    "summary": "A community-guided decision-support prototype that helps K–12 school teams see where shade reaches student-use areas, compare planting choices, and record human-reviewed decisions.",
+    "question": "How can a school team see whether shade actually reaches the ground students use, compare practical planting choices, and decide together what to do next?",
+    "approach": ["Separate canopy stock (how much tree cover a campus has) from functional shade (where and when shade reaches student-use ground).", "Compute shade on an illustrative campus in the browser from explicit sun geometry, keeping tree shade and building shade separate.", "Pair scenario comparisons with community input and a human approval step; nothing is acted on automatically."],
+    "checkpoint": "The live demo runs a simplified geometric shadow calculation on an illustrative campus. It is not a SOLWEIG, mean radiant temperature or UTCI simulation, and it shows no data from any real school. The approach builds on the author's New Mexico schoolyard shade research, which is an unpublished working manuscript.",
+    "limitations": "Illustrative geometry, simplified crown shapes, one summer date and clear-sky sun positions. Modeled shade is not thermal comfort, and demo results are not predictions for any particular school.",
+    "next": ["Add the community-feedback and decision-brief steps to the demo.", "Review which New Mexico research outputs can be cleared for public display.", "Test the workflow with school teams before claiming practical use."],
+    "diagram": ["Student-use zones + sun geometry", "Planting scenarios in the browser", "Community review → human decision"], "related": ["solweig-urban-heat", "shaded-routing"], "source_public": true, "source_url": "https://github.com/yuye06/yuye06.github.io/tree/main/explore/schooly", "source_label": "Demo source code on GitHub"
+  },
+  {
     "slug": "clark-kerr", "title": "Clark Kerr: a campus in 3D", "short": "Clark Kerr LiDAR & heat", "categories": ["sensing", "heat"], "theme": "3D sensing / microclimate", "status": "Diagnostic pilot", "accent": "blue", "featured": true,
     "summary": "Combining airborne and portable LiDAR to understand campus geometry and prepare for pedestrian radiant-heat modeling.",
     "question": "What does a portable survey add to an airborne representation of a campus, and where is that geometry reliable enough to inform heat-exposure analysis?",

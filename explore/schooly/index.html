@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Schooly demo — Yuye Zhou</title>
+<meta name="description" content="Interactive, illustrative schoolyard shade demo: compare planting near student-use areas with planting at the campus edge.">
+<link rel="icon" type="image/svg+xml" href="../../assets/mark.svg">
+<style>
+:root{--ink:#14213d;--muted:#5b6477;--line:#d9dee7;--bg:#fff;--soft:#f5f7fa;--navy:#1f3a68;--blue:#2f6db5;--tree:#6f9a6b;--tree-d:#4d7a4b;--bldg:#9aa1ab;--heat:#d9822b;--zone:#e8eef8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--blue)}header,main,footer{max-width:1180px;margin:0 auto;padding:0 16px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-top:18px;padding-bottom:10px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:20px;color:var(--navy);text-decoration:none}.brand small{font-weight:500;color:var(--muted);font-size:13px;margin-left:8px}
+nav a{margin-left:14px;font-size:14px}
+.banner{background:#fff6ea;border:1px solid #f0d3ad;border-radius:8px;padding:10px 14px;font-size:14px;margin:8px 0 14px}
+.badge{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;margin-right:6px;border:1px solid}
+.b-ill{background:#fff6ea;color:#8a4b0c;border-color:#f0d3ad}.b-calc{background:#eaf2fb;color:#1f4f8a;border-color:#bcd3ee}.b-plan{background:#f1f1f1;color:#555;border-color:#ccc}
+.grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:18px}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
+.card{border:1px solid var(--line);border-radius:10px;padding:14px;background:#fff}
+h1{font-size:26px;margin:4px 0 2px;color:var(--navy)}h2{font-size:17px;margin:0 0 8px;color:var(--navy)}
+.lead{color:var(--muted);margin:0 0 6px}
+svg{width:100%;height:auto;display:block;border-radius:8px;background:#f3efe6;touch-action:manipulation;cursor:crosshair}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0}
+button{font:inherit;font-size:14px;padding:7px 12px;border-radius:7px;border:1px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer}
+button.primary{background:var(--navy);color:#fff}button:focus-visible,input:focus-visible{outline:3px solid #f2b84b;outline-offset:2px}
+label{font-size:14px}input[type=range]{width:180px;vertical-align:middle}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:13px;color:var(--muted);margin-top:6px}
+.sw{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-2px;margin-right:4px}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:6px 4px;border-bottom:1px solid var(--line)}td.n{text-align:right;font-variant-numeric:tabular-nums}
+.bars{margin-top:10px}.bar{height:14px;border-radius:3px;background:var(--blue)}.barrow{display:grid;grid-template-columns:70px 1fr 64px;gap:8px;align-items:center;font-size:13px;margin:4px 0}
+.why{font-size:14px;background:var(--soft);border-radius:8px;padding:10px;margin-top:10px}
+details{margin-top:12px;font-size:14px}summary{cursor:pointer;font-weight:600;color:var(--navy)}
+footer{color:var(--muted);font-size:13px;padding-top:18px;padding-bottom:28px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="../../projects/schooly/">Schooly <small>from campus evidence to community action</small></a>
+  <nav><a href="../../projects/schooly/">Project note</a><a href="https://github.com/yuye06/yuye06.github.io/tree/main/explore/schooly">Source</a><a href="../../index.html#research">All projects</a></nav>
+</header>
+<main>
+  <div class="banner"><span class="badge b-ill">Illustrative campus</span><span class="badge b-calc">Illustrative geometric preview</span>
+    This campus is invented for demonstration. Shade is computed in your browser from sun position and simple building and tree shapes. It is not a SOLWEIG, T<sub>mrt</sub> or UTCI result and shows no real school's data.</div>
+  <h1>Where does shade reach students?</h1>
+  <p class="lead">Click inside the campus to add a tree, click a proposed tree to remove it, or use a preset. Every number below is recalculated from the geometry.</p>
+  <div class="grid">
+    <section class="card" aria-labelledby="mapt">
+      <h2 id="mapt">Campus plan <span id="clock" style="font-weight:500;color:var(--muted)"></span></h2>
+      <svg id="map" viewBox="0 0 120 80" role="img" aria-label="Illustrative campus plan with buildings, student-use zones, existing trees, proposed trees and computed shadows"></svg>
+      <div class="legend">
+        <span><i class="sw" style="background:#cfe0f5;border:1px solid #2f6db5"></i>Student-use zone</span>
+        <span><i class="sw" style="background:var(--bldg)"></i>Building</span>
+        <span><i class="sw" style="background:var(--tree)"></i>Existing tree</span>
+        <span><i class="sw" style="background:#a6d29c;border:2px dashed #2f6b2a"></i>Proposed tree</span>
+        <span><i class="sw" style="background:rgba(31,58,104,.45)"></i>Shade at selected hour</span>
+      </div>
+      <div class="controls">
+        <label for="hour">Time (15 Aug, MDT): <input id="hour" type="range" min="8" max="16" step="1" value="12"></label>
+        <label for="ntrees">Preset size: <select id="ntrees"></select></label>
+      </div>
+      <div class="controls">
+        <button id="pZone" class="primary">Plant near student-use area</button>
+        <button id="pEdge">Plant at campus edge</button>
+        <button id="pClear">Remove proposed trees</button>
+        <button id="pReset">Reset demo</button>
+      </div>
+    </section>
+    <section class="card" aria-labelledby="rest" aria-live="polite">
+      <h2 id="rest">Student-use zone shade</h2>
+      <table>
+        <thead><tr><th></th><th style="text-align:right">Existing</th><th style="text-align:right">With proposal</th></tr></thead>
+        <tbody id="tbl"></tbody>
+      </table>
+      <div class="bars" id="bars"></div>
+      <div class="why" id="why"></div>
+      <details><summary>How this is calculated</summary>
+        <p>Sun altitude and azimuth come from standard solar-geometry formulas for 15 August at 35.1°N, 106.6°W, at the nine whole hours 08:00–16:00 MDT, clear sky. The campus is a 1 m grid. A cell is in building shade if a line toward the sun meets a building below its roof height; it is in tree shade if it falls inside a crown's projected shadow (crown treated as a disk at mid-crown height). Shade-hours sum the nine hourly samples, each counted as one hour, averaged over student-use cells.</p>
+        <p><strong>Not included:</strong> terrain, diffuse light, crown porosity, tree growth and survival, irrigation, weather, actual student schedules or locations, and any thermal-comfort quantity. Results describe this invented geometry only.</p>
+      </details>
+      <details><summary>What is live and what is planned</summary>
+        <p><span class="badge b-calc">Live</span> shadow geometry, add/remove trees, zone-versus-edge presets, before/after values, saved locally in your browser.</p>
+        <p><span class="badge b-plan">Planned</span> community feedback, decision brief and human approval steps; research-derived New Mexico campus layers once cleared for public release.</p>
+      </details>
+    </section>
+  </div>
+</main>
+<footer>Schooly demo prototype by Yuye Zhou, November 2026. Illustrative data only; no school, student or community records are used or collected. Your edits stay in this browser (localStorage).</footer>
+<script>
+(function(){
+"use strict";
+var W=120,H=80,LAT=35.1,LON=-106.6,DOY=227,HOURS=[8,9,10,11,12,13,14,15,16];
+// Illustrative campus (metres; x east, y south)
+var BUILD=[{x:8,y:8,w:44,h:16,z:7},{x:8,y:24,w:14,h:22,z:7},{x:66,y:8,w:22,h:12,z:9}];
+var ZONES=[{x:30,y:34,w:34,h:26,name:"Playground and courts"},{x:72,y:30,w:36,h:30,name:"Field"}];
+var EXIST=[{x:4,y:62,r:3.5},{x:12,y:72,r:3},{x:60,y:74,r:3.5},{x:100,y:74,r:3},{x:114,y:40,r:3},{x:114,y:14,r:3.5}];
+var TREE_H=8,CROWN_MID=5.5;
+var KEY="schooly-demo-v1";
+var state=load()||{hour:12,trees:[],n:10};
+function load(){try{var s=JSON.parse(localStorage.getItem(KEY));return s&&Array.isArray(s.trees)?s:null}catch(e){return null}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function rad(d){return d*Math.PI/180}
+function sun(hr){ // NOAA-style approximation, clock time MDT (UTC-6)
+  var B=2*Math.PI*(DOY-81)/364,eot=9.87*Math.sin(2*B)-7.53*Math.cos(B)-1.5*Math.sin(B);
+  var dec=rad(23.44*Math.sin(2*Math.PI*(284+DOY)/365));
+  var st=hr*60+4*(LON-(-90))+eot, ha=rad((st/60-12)*15), lat=rad(LAT);
+  var sa=Math.sin(lat)*Math.sin(dec)+Math.cos(lat)*Math.cos(dec)*Math.cos(ha), alt=Math.asin(sa);
+  var ca=(Math.sin(dec)-sa*Math.sin(lat))/(Math.cos(alt)*Math.cos(lat)); ca=Math.max(-1,Math.min(1,ca));
+  var az=Math.acos(ca); if(ha>0) az=2*Math.PI-az;
+  return {alt:alt,az:az};
+}
+var SUN={};HOURS.forEach(function(h){SUN[h]=sun(h)});
+function inRect(px,py,b){return px>=b.x&&px<b.x+b.w&&py>=b.y&&py<b.y+b.h}
+function inBuilding(px,py){for(var i=0;i<BUILD.length;i++)if(inRect(px,py,BUILD[i]))return true;return false}
+function inZone(px,py){for(var i=0;i<ZONES.length;i++)if(inRect(px,py,ZONES[i]))return true;return false}
+// shade masks: 0 none, 1 building, 2 tree
+function mask(hr,trees){
+  var s=SUN[hr],t=1/Math.tan(s.alt),ux=Math.sin(s.az),uy=-Math.cos(s.az); // toward sun, y south
+  var m=new Uint8Array(W*H);
+  for(var j=0;j<H;j++)for(var i=0;i<W;i++){
+    var px=i+.5,py=j+.5,k=j*W+i;
+    if(inBuilding(px,py)){m[k]=1;continue}
+    for(var b=0;b<BUILD.length&&!m[k];b++){var L=BUILD[b].z*t;for(var d=.5;d<=L;d+=.5){if(inRect(px+ux*d,py+uy*d,BUILD[b])){m[k]=1;break}}}
+    if(m[k])continue;
+    var off=CROWN_MID*t;
+    for(var q=0;q<trees.length;q++){var tr=trees[q],cx=tr.x-ux*off,cy=tr.y-uy*off,dx=px-cx,dy=py-cy;if(dx*dx+dy*dy<=tr.r*tr.r){m[k]=2;break}}
+  }
+  return m;
+}
+var ZCELLS=[];for(var j=0;j<H;j++)for(var i=0;i<W;i++)if(inZone(i+.5,j+.5)&&!inBuilding(i+.5,j+.5))ZCELLS.push(j*W+i);
+function metrics(trees){
+  var hrs=new Float32Array(W*H),bh=0,th=0,never=0,cur=null;
+  HOURS.forEach(function(h){var m=mask(h,trees);if(h===state.hour)cur=m;ZCELLS.forEach(function(k){if(m[k]){hrs[k]++; if(m[k]===1)bh++;else th++}})});
+  ZCELLS.forEach(function(k){if(!hrs[k])never++});
+  var n=ZCELLS.length;
+  var curShare=0;ZCELLS.forEach(function(k){if(cur[k])curShare++});
+  return {shadeH:(bh+th)/n,bldH:bh/n,treeH:th/n,never:100*never/n,now:100*curShare/n,cur:cur};
+}
+function allTrees(){return EXIST.concat(state.trees)}
+// placement presets (deterministic)
+function preset(kind,n){
+  var c=[],i;
+  if(kind==="zone"){ // along the south and west sides of student-use zones, inside the zone edge
+    ZONES.forEach(function(z){for(i=0;i<8;i++)c.push({x:z.x+3+i*(z.w-6)/7,y:z.y+z.h-3});for(i=1;i<5;i++)c.push({x:z.x+3,y:z.y+3+i*(z.h-6)/5})});
+  }else{ // campus perimeter outside zones and buildings
+    for(i=0;i<10;i++)c.push({x:6+i*12,y:77});for(i=0;i<6;i++)c.push({x:117,y:26+i*9});for(i=0;i<6;i++)c.push({x:94+i*4,y:3})
+  }
+  c=c.filter(function(p){return !inBuilding(p.x,p.y)});
+  return c.slice(0,n).map(function(p){return {x:+p.x.toFixed(1),y:+p.y.toFixed(1),r:3,kind:kind}});
+}
+var svg=document.getElementById("map"),NS="http://www.w3.org/2000/svg";
+function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e}
+var base=null;
+function draw(){
+  var trees=allTrees(),now=metrics(trees);base=base||metrics(EXIST);
+  while(svg.firstChild)svg.removeChild(svg.firstChild);
+  svg.appendChild(el("rect",{x:0.5,y:0.5,width:W-1,height:H-1,fill:"#efe9dc",stroke:"#b9ae97","stroke-dasharray":"2 1","stroke-width":.4}));
+  ZONES.forEach(function(z){svg.appendChild(el("rect",{x:z.x,y:z.y,width:z.w,height:z.h,fill:"#cfe0f5",stroke:"#2f6db5","stroke-width":.4}))});
+  var p="";for(var j=0;j<H;j++)for(var i=0;i<W;i++){if(now.cur[j*W+i]&&!inBuilding(i+.5,j+.5))p+="M"+i+" "+j+"h1v1h-1z"}
+  svg.appendChild(el("path",{d:p,fill:"rgba(31,58,104,.45)"}));
+  BUILD.forEach(function(b){svg.appendChild(el("rect",{x:b.x,y:b.y,width:b.w,height:b.h,fill:"#9aa1ab",stroke:"#6f7680","stroke-width":.4}))});
+  EXIST.forEach(function(t){svg.appendChild(el("circle",{cx:t.x,cy:t.y,r:t.r,fill:"#6f9a6b",stroke:"#4d7a4b","stroke-width":.4}))});
+  state.trees.forEach(function(t,ix){var c=el("circle",{cx:t.x,cy:t.y,r:t.r,fill:"#a6d29c","fill-opacity":.9,stroke:"#2f6b2a","stroke-width":.5,"stroke-dasharray":"1 .6",tabindex:0,role:"button","aria-label":"Proposed tree "+(ix+1)+", press Enter to remove"});
+    c.addEventListener("click",function(e){e.stopPropagation();state.trees.splice(ix,1);save();draw()});
+    c.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();state.trees.splice(ix,1);save();draw()}});
+    svg.appendChild(c)});
+  var s=SUN[state.hour],ax=60+Math.sin(s.az)*0,lab=el("text",{x:2,y:5,"font-size":3,fill:"#5b6477"});lab.textContent="N ↑   sun altitude "+(s.alt*180/Math.PI).toFixed(0)+"°, azimuth "+(s.az*180/Math.PI).toFixed(0)+"°";svg.appendChild(lab);
+  document.getElementById("clock").textContent="· "+String(state.hour).padStart(2,"0")+":00 MDT";
+  var rows=[["Shade-hours per zone cell (9 samples)",base.shadeH.toFixed(2)+" h",now.shadeH.toFixed(2)+" h"],
+    ["  from buildings",base.bldH.toFixed(2)+" h",now.bldH.toFixed(2)+" h"],["  from trees",base.treeH.toFixed(2)+" h",now.treeH.toFixed(2)+" h"],
+    ["Zone never shaded at sampled hours",base.never.toFixed(0)+"%",now.never.toFixed(0)+"%"],
+    ["Zone shaded at "+String(state.hour).padStart(2,"0")+":00",metrics(EXIST).now.toFixed(0)+"%",now.now.toFixed(0)+"%"],
+    ["Proposed trees","0",String(state.trees.length)]];
+  document.getElementById("tbl").innerHTML=rows.map(function(r){return "<tr><td>"+r[0].replace(/^  /,"&nbsp;&nbsp;&nbsp;")+"</td><td class=n>"+r[1]+"</td><td class=n>"+r[2]+"</td></tr>"}).join("");
+  var mx=Math.max(base.shadeH,now.shadeH,.01);
+  document.getElementById("bars").innerHTML=[["Existing",base.shadeH,"#9db7d8"],["Proposal",now.shadeH,"#2f6db5"]].map(function(b){return '<div class="barrow"><span>'+b[0]+'</span><div class="bar" style="width:'+(100*b[1]/mx).toFixed(1)+'%;background:'+b[2]+'"></div><span>'+b[1].toFixed(2)+' h</span></div>'}).join("");
+  var zoneT=state.trees.filter(function(t){return inZone(t.x,t.y)}).length,gain=now.shadeH-base.shadeH;
+  document.getElementById("why").innerHTML=state.trees.length?("<strong>Why this changed.</strong> "+state.trees.length+" proposed tree"+(state.trees.length>1?"s":"")+", "+zoneT+" inside a student-use zone. Zone shade changed by "+(gain>=0?"+":"")+gain.toFixed(2)+" h per cell. Trees outside the zones only help when their shadows fall onto zone ground at the sampled hours; at midday shadows are short, so edge trees rarely reach the zones."):"<strong>No proposal yet.</strong> On this invented campus, existing zone shade is "+base.bldH.toFixed(2)+" h from buildings and "+base.treeH.toFixed(2)+" h from trees per zone cell. Try the two presets with the same number of trees.";
+}
+svg.addEventListener("click",function(e){
+  var pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;var q=pt.matrixTransform(svg.getScreenCTM().inverse());
+  if(q.x<1||q.y<1||q.x>W-1||q.y>H-1||inBuilding(q.x,q.y))return;
+  if(state.trees.length>=20)return;
+  state.trees.push({x:+q.x.toFixed(1),y:+q.y.toFixed(1),r:3,kind:"manual"});save();draw();
+});
+var sel=document.getElementById("ntrees");for(var n=1;n<=20;n++){var o=document.createElement("option");o.value=n;o.textContent=n+" trees";sel.appendChild(o)}
+sel.value=state.n||10;sel.addEventListener("change",function(){state.n=+sel.value;save()});
+var hr=document.getElementById("hour");hr.value=state.hour;hr.addEventListener("input",function(){state.hour=+hr.value;save();draw()});
+document.getElementById("pZone").onclick=function(){state.trees=preset("zone",+sel.value);save();draw()};
+document.getElementById("pEdge").onclick=function(){state.trees=preset("edge",+sel.value);save();draw()};
+document.getElementById("pClear").onclick=function(){state.trees=[];save();draw()};
+document.getElementById("pReset").onclick=function(){state={hour:12,trees:[],n:10};try{localStorage.removeItem(KEY)}catch(e){}hr.value=12;sel.value=10;draw()};
+draw();
+})();
+</script>
+</body>
+</html>
