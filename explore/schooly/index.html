@@ -99,6 +99,14 @@ var EXIST=[{x:4,y:62,r:3.5},{x:12,y:72,r:3},{x:60,y:74,r:3.5},{x:100,y:74,r:3},{
 var TREE_H=8,CROWN_MID=5.5;
 var KEY="schooly-demo-v1";
 var state=load()||{hour:12,trees:[],n:10};
+// Shareable scenario links, e.g. ?preset=zone&n=10&hour=15 or ?t=40,50;46,52 (not saved until you edit)
+var Q=new URLSearchParams(location.search);
+if(Q.has("hour")||Q.has("preset")||Q.has("t")){
+  var qh=+Q.get("hour"),qn=Math.min(20,Math.max(1,+Q.get("n")||10));
+  state={hour:(qh>=8&&qh<=16)?Math.round(qh):12,trees:[],n:qn};
+  if(Q.get("preset")==="zone"||Q.get("preset")==="edge")state.trees=preset(Q.get("preset"),qn);
+  if(Q.get("t"))Q.get("t").split(";").slice(0,20).forEach(function(s){var a=s.split(",").map(Number);if(a.length===2&&a[0]>1&&a[0]<W-1&&a[1]>1&&a[1]<H-1&&!inBuilding(a[0],a[1]))state.trees.push({x:a[0],y:a[1],r:3,kind:"manual"})});
+}
 function load(){try{var s=JSON.parse(localStorage.getItem(KEY));return s&&Array.isArray(s.trees)?s:null}catch(e){return null}}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
 function rad(d){return d*Math.PI/180}
@@ -192,6 +200,7 @@ document.getElementById("pZone").onclick=function(){state.trees=preset("zone",+s
 document.getElementById("pEdge").onclick=function(){state.trees=preset("edge",+sel.value);save();draw()};
 document.getElementById("pClear").onclick=function(){state.trees=[];save();draw()};
 document.getElementById("pReset").onclick=function(){state={hour:12,trees:[],n:10};try{localStorage.removeItem(KEY)}catch(e){}hr.value=12;sel.value=10;draw()};
+if(Q.get("open")==="1")Array.prototype.forEach.call(document.querySelectorAll("details"),function(d){d.open=true});
 draw();
 })();
 </script>

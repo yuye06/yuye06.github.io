@@ -1,6 +1,6 @@
 [
   {
-    "slug": "schooly", "title": "Schooly: from campus evidence to community action", "short": "Schooly schoolyard shade", "categories": ["heat", "human"], "theme": "Schoolyard heat / community decision support", "status": "Demo prototype", "accent": "green", "demo_url": "explore/schooly/",
+    "slug": "schooly", "title": "Schooly: from campus evidence to community action", "short": "Schooly schoolyard shade", "categories": ["heat", "human"], "theme": "Schoolyard heat / community decision support", "status": "Demo prototype", "accent": "green", "demo_url": "explore/schooly/", "video_url": "video/",
     "summary": "A community-guided decision-support prototype that helps K–12 school teams see where shade reaches student-use areas, compare planting choices, and record human-reviewed decisions.",
     "question": "How can a school team see whether shade actually reaches the ground students use, compare practical planting choices, and decide together what to do next?",
     "approach": ["Separate canopy stock (how much tree cover a campus has) from functional shade (where and when shade reaches student-use ground).", "Compute shade on an illustrative campus in the browser from explicit sun geometry, keeping tree shade and building shade separate.", "Pair scenario comparisons with community input and a human approval step; nothing is acted on automatically."],

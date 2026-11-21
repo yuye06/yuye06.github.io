@@ -1,0 +1,132 @@
+[
+ {
+  "start": 0.0,
+  "end": 6.0,
+  "text": "Schooly. From campus evidence to community action. A silent walkthrough of the working demo prototype: where shade reaches the ground students use, and how tree placement changes it."
+ },
+ {
+  "start": 6.0,
+  "end": 11.0,
+  "text": "Schooly is listed with the other research projects at yuye06.github.io/projects."
+ },
+ {
+  "start": 11.0,
+  "end": 17.0,
+  "text": "The project note states the question, the approach and what the demo does and does not show."
+ },
+ {
+  "start": 17.0,
+  "end": 24.0,
+  "text": "An invented campus: buildings in gray, student-use zones in blue, existing trees in green."
+ },
+ {
+  "start": 24.0,
+  "end": 30.0,
+  "text": "Shade is computed in the browser from the sun's position for 15 August at 35.1° N, on a 1 m grid."
+ },
+ {
+  "start": 30.0,
+  "end": 31.2,
+  "text": "08:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours."
+ },
+ {
+  "start": 31.2,
+  "end": 32.5,
+  "text": "09:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours."
+ },
+ {
+  "start": 32.5,
+  "end": 33.8,
+  "text": "10:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours."
+ },
+ {
+  "start": 33.8,
+  "end": 35.0,
+  "text": "11:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours."
+ },
+ {
+  "start": 35.0,
+  "end": 36.2,
+  "text": "12:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours."
+ },
+ {
+  "start": 36.2,
+  "end": 37.5,
+  "text": "13:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours."
+ },
+ {
+  "start": 37.5,
+  "end": 38.8,
+  "text": "14:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours."
+ },
+ {
+  "start": 38.8,
+  "end": 40.0,
+  "text": "15:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours."
+ },
+ {
+  "start": 40.0,
+  "end": 41.2,
+  "text": "16:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours."
+ },
+ {
+  "start": 41.2,
+  "end": 47.2,
+  "text": "Existing campus: 0.04 h of zone shade per cell; 97% of zone ground is never shaded at the sampled hours."
+ },
+ {
+  "start": 47.2,
+  "end": 53.2,
+  "text": "Preset: 10 proposed trees (dashed) inside the student-use zones."
+ },
+ {
+  "start": 53.2,
+  "end": 60.2,
+  "text": "Zone shade rises from 0.04 h to 0.89 h per cell, and never-shaded ground falls to 79%."
+ },
+ {
+  "start": 60.2,
+  "end": 64.2,
+  "text": "At 15:00 the same trees cast longer shadows across the zones."
+ },
+ {
+  "start": 64.2,
+  "end": 70.2,
+  "text": "Preset: the same 10 trees along the campus edge instead."
+ },
+ {
+  "start": 70.2,
+  "end": 77.2,
+  "text": "Zone shade stays at 0.04 h per cell: on this campus the edge trees' shadows almost never reach student-use ground."
+ },
+ {
+  "start": 77.2,
+  "end": 81.2,
+  "text": "At 15:00 the edge trees' shadows still fall mostly outside the zones."
+ },
+ {
+  "start": 81.2,
+  "end": 89.2,
+  "text": "Same 10 trees, different placement. Zone shade-hours per cell: existing 0.04 h; 10 trees inside the zones 0.89 h; 10 trees at the campus edge 0.04 h. Values describe this invented campus only."
+ },
+ {
+  "start": 89.2,
+  "end": 95.2,
+  "text": "Trees can also be placed by clicking on the plan and removed by clicking them; every value is recalculated."
+ },
+ {
+  "start": 95.2,
+  "end": 103.2,
+  "text": "The method and its limits are on the page: simplified crowns, clear sky, one date; not SOLWEIG, Tmrt or UTCI."
+ },
+ {
+  "start": 103.2,
+  "end": 111.2,
+  "text": "Planned, not yet built. Community step: example feedback from staff and families, grouped by topic and correctable by reviewers. Decision step: an evidence-linked brief with a human approval state. No external action is taken. Research-derived New Mexico campus layers only after a data-release review."
+ },
+ {
+  "start": 111.2,
+  "end": 117.2,
+  "text": "Try it. Demo: yuye06.github.io/explore/schooly Project note: yuye06.github.io/projects/schooly Source: github.com/yuye06/yuye06.github.io"
+ }
+]

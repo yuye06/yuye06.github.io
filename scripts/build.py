@@ -72,7 +72,8 @@ def project_page(project, lookup):
     if slug == 'clark-kerr':
         html += '<div class="actions"><a class="button" href="../../explore/clark-kerr/">Open the interactive 3D explorer <span aria-hidden="true">↗</span></a></div>'
     if project.get('demo_url'):
-        html += '<div class="actions"><a class="button" href="../../' + escape(project['demo_url']) + '">Open the interactive demo <span aria-hidden="true">↗</span></a></div>'
+        video = f' <a class="text-link" href="{escape(project["video_url"])}">Watch the 2-minute walkthrough</a>' if project.get('video_url') else ''
+        html += '<div class="actions"><a class="button" href="../../' + escape(project['demo_url']) + '">Open the interactive demo <span aria-hidden="true">↗</span></a>' + video + '</div>'
     html += '</section>'
     if slug == 'clark-kerr':
         html += '<figure class="project-figure"><img src="../../assets/clark-kerr-overview.webp" alt="Actual elevation-colored point-cloud preview of the campus and surrounding terrain" width="1800" height="1100"><figcaption>Actual sampled point-cloud view. Elevation colors are not camera RGB; the registered portable geometry remains diagnostic.</figcaption></figure>'

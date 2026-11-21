@@ -1,0 +1,105 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:06.000
+Schooly. From campus evidence to community action. A silent walkthrough of the working demo prototype: where shade reaches the ground students use, and how tree placement changes it.
+
+2
+00:00:06.000 --> 00:00:11.000
+Schooly is listed with the other research projects at yuye06.github.io/projects.
+
+3
+00:00:11.000 --> 00:00:17.000
+The project note states the question, the approach and what the demo does and does not show.
+
+4
+00:00:17.000 --> 00:00:24.000
+An invented campus: buildings in gray, student-use zones in blue, existing trees in green.
+
+5
+00:00:24.000 --> 00:00:30.000
+Shade is computed in the browser from the sun's position for 15 August at 35.1° N, on a 1 m grid.
+
+6
+00:00:30.000 --> 00:00:31.250
+08:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours.
+
+7
+00:00:31.250 --> 00:00:32.500
+09:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours.
+
+8
+00:00:32.500 --> 00:00:33.750
+10:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours.
+
+9
+00:00:33.750 --> 00:00:35.000
+11:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours.
+
+10
+00:00:35.000 --> 00:00:36.250
+12:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours.
+
+11
+00:00:36.250 --> 00:00:37.500
+13:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours.
+
+12
+00:00:37.500 --> 00:00:38.750
+14:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours.
+
+13
+00:00:38.750 --> 00:00:40.000
+15:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours.
+
+14
+00:00:40.000 --> 00:00:41.250
+16:00 MDT. Moving the time slider recomputes building and tree shadows for each of nine school hours.
+
+15
+00:00:41.250 --> 00:00:47.250
+Existing campus: 0.04 h of zone shade per cell; 97% of zone ground is never shaded at the sampled hours.
+
+16
+00:00:47.250 --> 00:00:53.250
+Preset: 10 proposed trees (dashed) inside the student-use zones.
+
+17
+00:00:53.250 --> 00:01:00.250
+Zone shade rises from 0.04 h to 0.89 h per cell, and never-shaded ground falls to 79%.
+
+18
+00:01:00.250 --> 00:01:04.250
+At 15:00 the same trees cast longer shadows across the zones.
+
+19
+00:01:04.250 --> 00:01:10.250
+Preset: the same 10 trees along the campus edge instead.
+
+20
+00:01:10.250 --> 00:01:17.250
+Zone shade stays at 0.04 h per cell: on this campus the edge trees' shadows almost never reach student-use ground.
+
+21
+00:01:17.250 --> 00:01:21.250
+At 15:00 the edge trees' shadows still fall mostly outside the zones.
+
+22
+00:01:21.250 --> 00:01:29.250
+Same 10 trees, different placement. Zone shade-hours per cell: existing 0.04 h; 10 trees inside the zones 0.89 h; 10 trees at the campus edge 0.04 h. Values describe this invented campus only.
+
+23
+00:01:29.250 --> 00:01:35.250
+Trees can also be placed by clicking on the plan and removed by clicking them; every value is recalculated.
+
+24
+00:01:35.250 --> 00:01:43.250
+The method and its limits are on the page: simplified crowns, clear sky, one date; not SOLWEIG, Tmrt or UTCI.
+
+25
+00:01:43.250 --> 00:01:51.250
+Planned, not yet built. Community step: example feedback from staff and families, grouped by topic and correctable by reviewers. Decision step: an evidence-linked brief with a human approval state. No external action is taken. Research-derived New Mexico campus layers only after a data-release review.
+
+26
+00:01:51.250 --> 00:01:57.250
+Try it. Demo: yuye06.github.io/explore/schooly Project note: yuye06.github.io/projects/schooly Source: github.com/yuye06/yuye06.github.io
