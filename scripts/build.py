@@ -165,11 +165,17 @@ def build(viewer=None):
     write('index.html', home(projects))
     for project in projects:
         write('projects/' + project['slug'] + '/index.html', project_page(project, lookup))
+    listing = head('Projects — Yuye Zhou', 'Research projects by Yuye Zhou.', '../', 'projects/')
+    listing += '<main id="main" class="wrap"><div class="breadcrumb"><a href="../index.html">Home</a> <span aria-hidden="true"> / </span>Projects</div><section class="project-hero"><p class="eyebrow">Questions, methods, and working results</p><h1>Projects</h1><p class="project-lead">Each note makes its current stage explicit.</p></section><div class="project-list">'
+    for index, project in enumerate(projects, 1):
+        link = f'<a class="live-link" href="../{project["demo_url"]}">Open demo <span aria-hidden="true">↗</span></a>' if project.get('demo_url') else f'<a href="{project["slug"]}/">Project note <span aria-hidden="true">↗</span></a>'
+        listing += f'''<article class="project-row"><span class="project-index" aria-hidden="true">{index:02d}</span><div class="project-main"><div class="project-theme">{escape(project['theme'])}</div><h3><a href="{project['slug']}/">{escape(project['title'])}</a></h3><p>{escape(project['summary'])}</p></div><div class="project-side">{status(project)}{link}</div></article>'''
+    write('projects/index.html', listing + '</div></main>' + footer('../'))
     missing = head('Page not found — Yuye Zhou', 'Return to the research portfolio.', '/', '404.html')
     missing += '<main id="main" class="wrap notfound"><p class="eyebrow">404 / page not found</p><h1>Back to the research.</h1><p>This page may have moved.</p><a class="button" href="/">Return to the portfolio</a></main>'
     write('404.html', missing + footer('/'))
     write('robots.txt', 'User-agent: *\nAllow: /\nSitemap: ' + SITE + '/sitemap.xml\n')
-    urls = [SITE + '/'] + [SITE + '/projects/' + p['slug'] + '/' for p in projects] + [SITE + '/explore/clark-kerr/'] + [SITE + '/' + p['demo_url'] for p in projects if p.get('demo_url')]
+    urls = [SITE + '/', SITE + '/projects/'] + [SITE + '/projects/' + p['slug'] + '/' for p in projects] + [SITE + '/explore/clark-kerr/'] + [SITE + '/' + p['demo_url'] for p in projects if p.get('demo_url')]
     write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + ''.join('<url><loc>' + escape(url) + '</loc><lastmod>2026-11-17</lastmod></url>' for url in urls) + '</urlset>\n')
     report = {'projects': len(projects), 'personal_data': 'Display name and GitHub profile only; no email or credentials.',
               'raw_survey_files_included': False, 'other_private_project_implementation_code_included': False}
